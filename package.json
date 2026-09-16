@@ -1,0 +1,246 @@
+{
+  "name": "togather-as-one",
+  "displayName": "TogatherAsOne (LAN Live Share)",
+  "description": "Full-featured real-time collaborative coding over Local Area Network (LAN) with zero cloud dependencies.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Abhi77sil/TogatherAsOne"
+  },
+  "publisher": "togather",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Collaboration",
+    "Other"
+  ],
+  "keywords": [
+    "liveshare",
+    "collaboration",
+    "lan",
+    "pair-programming",
+    "offline",
+    "p2p"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "togather-sidebar",
+          "title": "Togather LAN Share",
+          "icon": "resources/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "togather-sidebar": [
+        {
+          "id": "togather.sessionView",
+          "name": "Session & Participants"
+        },
+        {
+          "id": "togather.remoteFilesView",
+          "name": "Remote Workspace Files"
+        },
+        {
+          "id": "togather.lanDiscoveryView",
+          "name": "Discovered LAN Sessions"
+        },
+        {
+          "id": "togather.terminalsView",
+          "name": "Shared Terminals"
+        },
+        {
+          "id": "togather.portsView",
+          "name": "Shared Ports"
+        },
+        {
+          "id": "togather.activityLogView",
+          "name": "Activity & Change Log"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "togather.startHostSession",
+        "title": "Togather: Start LAN Session (Host)",
+        "icon": "$(broadcast)"
+      },
+      {
+        "command": "togather.stopSession",
+        "title": "Togather: Stop Sharing / Leave Session",
+        "icon": "$(circle-slash)"
+      },
+      {
+        "command": "togather.joinSession",
+        "title": "Togather: Join LAN Session (Manual IP)",
+        "icon": "$(plug)"
+      },
+      {
+        "command": "togather.copyInviteInfo",
+        "title": "Togather: Copy LAN Invite Details",
+        "icon": "$(clippy)"
+      },
+      {
+        "command": "togather.shareTerminal",
+        "title": "Togather: Share a Terminal",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "togather.sharePort",
+        "title": "Togather: Share Local Server Port",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "togather.openChat",
+        "title": "Togather: Open LAN Chat",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "togather.refreshDiscovery",
+        "title": "Togather: Scan LAN for Sessions",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "togather.toggleAutoApprove",
+        "title": "Togather: Toggle Auto-Approve Joins",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "togather.setAllReadOnly",
+        "title": "Togather: Set All to Read-Only Mode",
+        "icon": "$(lock)"
+      },
+      {
+        "command": "togather.setAllReadWrite",
+        "title": "Togather: Set All to Read & Write Mode",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "togather.manageParticipant",
+        "title": "Togather: Manage Participant Permissions",
+        "icon": "$(account)"
+      },
+      {
+        "command": "togather.revertChange",
+        "title": "Togather: Revert this Change",
+        "icon": "$(discard)"
+      },
+      {
+        "command": "togather.revertUserChanges",
+        "title": "Togather: Revert All Changes by User...",
+        "icon": "$(history)"
+      },
+      {
+        "command": "togather.clearActivityLog",
+        "title": "Togather: Clear Activity Log",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "togather.openFirewallPort",
+        "title": "Togather: Authorize Port in Firewall",
+        "icon": "$(shield)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "togather.stopSession",
+          "when": "view == togather.sessionView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "togather.copyInviteInfo",
+          "when": "view == togather.sessionView",
+          "group": "navigation@2"
+        },
+        {
+          "command": "togather.refreshDiscovery",
+          "when": "view == togather.lanDiscoveryView",
+          "group": "navigation"
+        },
+        {
+          "command": "togather.revertUserChanges",
+          "when": "view == togather.activityLogView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "togather.clearActivityLog",
+          "when": "view == togather.activityLogView",
+          "group": "navigation@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "togather.revertChange",
+          "when": "view == togather.activityLogView && viewItem == activityItem",
+          "group": "inline"
+        },
+        {
+          "command": "togather.revertUserChanges",
+          "when": "view == togather.activityLogView && viewItem == activityItem",
+          "group": "1_revert"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Togather LAN Share",
+      "properties": {
+        "togather.defaultPort": {
+          "type": "number",
+          "default": 7890,
+          "description": "Default TCP port for the LAN WebSocket server."
+        },
+        "togather.userName": {
+          "type": "string",
+          "default": "",
+          "description": "Your display name for LAN collaboration sessions (defaults to OS user if empty)."
+        },
+        "togather.autoDiscover": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically broadcast and scan for Togather sessions on the local network using mDNS."
+        },
+        "togather.requirePin": {
+          "type": "boolean",
+          "default": true,
+          "description": "Require guests to enter a 4-digit PIN code when joining your hosted session."
+        },
+        "togather.autoApprove": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically approve join requests (if PIN is enabled, PIN must still match). If false, host will be prompted for approval on every join."
+        },
+        "togather.autoOpenNewWindowIfFolderOpen": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically open collaborative sessions in a new VS Code window if you already have a folder or workspace open."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "compile": "tsc -p ./ --noEmit",
+    "watch": "node esbuild.js --watch",
+    "build": "node esbuild.js --minify"
+  },
+  "dependencies": {
+    "bonjour-service": "^1.2.1",
+    "ws": "^8.18.0",
+    "yjs": "^13.6.14"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.85.0",
+    "@types/ws": "^8.5.10",
+    "esbuild": "^0.21.4",
+    "typescript": "^5.4.5"
+  }
+}

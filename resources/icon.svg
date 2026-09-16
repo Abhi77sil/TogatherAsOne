@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="googleBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285F4" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="googleGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34A853" />
+      <stop offset="100%" stop-color="#16A34A" />
+    </linearGradient>
+    <linearGradient id="googleYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBC05" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+    <linearGradient id="googleRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EA4335" />
+      <stop offset="100%" stop-color="#DC2626" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#4285F4" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Background rounded squircle -->
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bgGrad)" stroke="#334155" stroke-width="2"/>
+
+  <!-- Connecting LAN network waves / lines -->
+  <path d="M64 34 L36 84" stroke="#475569" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 4" />
+  <path d="M64 34 L92 84" stroke="#475569" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 4" />
+  <path d="M36 84 L92 84" stroke="#475569" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 4" />
+
+  <!-- Radiating Wi-Fi / LAN broadcast waves around Host -->
+  <circle cx="64" cy="36" r="22" fill="none" stroke="#4285F4" stroke-width="1.5" opacity="0.35"/>
+  <circle cx="64" cy="36" r="28" fill="none" stroke="#34A853" stroke-width="1" opacity="0.2"/>
+
+  <!-- Top Host Node (Google Blue) -->
+  <circle cx="64" cy="36" r="16" fill="url(#googleBlue)" filter="url(#glow)"/>
+  <!-- Material Crown / Host Icon inside Top Node -->
+  <path d="M58 41 L59.5 32 L64 35.5 L68.5 32 L70 41 Z" fill="#FFFFFF"/>
+
+  <!-- Bottom Left Node (Google Red/Orange) -->
+  <circle cx="36" cy="84" r="14" fill="url(#googleRed)" />
+  <!-- Material Person Icon inside Left Node -->
+  <circle cx="36" cy="80" r="4.5" fill="#FFFFFF" />
+  <path d="M28 92 C28 88 32 87 36 87 C40 87 44 88 44 92 Z" fill="#FFFFFF" />
+
+  <!-- Bottom Right Node (Google Green) -->
+  <circle cx="92" cy="84" r="14" fill="url(#googleGreen)" />
+  <!-- Material Person Icon inside Right Node -->
+  <circle cx="92" cy="80" r="4.5" fill="#FFFFFF" />
+  <path d="M84 92 C84 88 88 87 92 87 C96 87 100 88 100 92 Z" fill="#FFFFFF" />
+
+  <!-- Center Convergence Spark / Collaboration Star (Google Yellow) -->
+  <circle cx="64" cy="67" r="6.5" fill="url(#googleYellow)" />
+  <circle cx="64" cy="67" r="3" fill="#FFFFFF" />
+</svg>
